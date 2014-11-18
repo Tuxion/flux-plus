@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+  <head>
+    <title>FluxPlus Test'em</title>
+    <link rel="stylesheet" href="/bower_components/mocha/mocha.css">
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/mocha/mocha.js"></script>
+    <script src="/bower_components/chai/chai.js"></script>
+    <script src="/bower_components/sinon-chai/lib/sinon-chai.js"></script>
+    <script src="/bower_components/chai-as-promised/lib/chai-as-promised.js"></script>
+    <script src="/node_modules/sinon/pkg/sinon.js"></script>
+    <script src="/testem.js"></script>
+  </head>
+  <body>
+    <div id="mocha"></div>
+    <script type="text/javascript">mocha.setup("bdd");</script>
+    {{#serve_files}}<script src="{{src}}"></script>{{/serve_files}}
+    <script src="//localhost:35729/livereload.js?snipver=1" type="text/javascript"></script>
+  </body>
+</html>

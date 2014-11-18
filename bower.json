@@ -1,0 +1,28 @@
+{
+  "name": "flux-plus",
+  "dependencies": {
+    "flux": "*",
+    "eventEmitter": "*"
+  },
+  "devDependencies": {
+    "jquery": "*",
+    "mocha": "*",
+    "chai": "*",
+    "chai-as-promised": "*",
+    "sinon-chai": "*"
+  },
+  "overrides": {
+    "mocha": {
+      "main": [
+        "mocha.js",
+        "mocha.css"
+      ]
+    },
+    "chai-as-promised": {
+      "main": "lib/chai-as-promised.js"
+    },
+    "sinon-chai": {
+      "main": "./lib/sinon-chai.js"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "test_page": "index.mustache",
+  "reporter": "tap",
+  "src_files": [
+    "dist/flux-plus.min.js",
+    "dist/tests.js",
+    "test/unit/run-tests.js"
+  ]
+}
