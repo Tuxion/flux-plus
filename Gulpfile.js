@@ -10,7 +10,8 @@ var del = require('del');
 var paths = {
   entry: './src/index.coffee',
   scripts: './src/**/*.coffee',
-  tests: './test/unit/**/*.coffee',
+  testEntry: './test/unit/src/index.coffee',
+  tests: './test/unit/src/**/*.coffee',
   output: './dist'
 };
 
@@ -19,11 +20,12 @@ var getBundleName = function () {
   return name + '.' + 'min.js';
 };
 
-var coffeeBrowserify = function(){
+var coffeeBrowserify = function(standalone){
   return transform(function(filename){
     var b = browserify(filename, {
       extensions: ['.coffee'],
-      paths: ['.']
+      paths: ['.'],
+      standalone: standalone || null
     });
     b.transform(cachingCoffeeify)
     return b.bundle();
@@ -37,7 +39,7 @@ gulp.task('clean', function(cb) {
 gulp.task('build', function() {
   
   return gulp.src(paths.entry)
-    .pipe(coffeeBrowserify())
+    .pipe(coffeeBrowserify('FluxPlus'))
     .pipe(uglify())
     .pipe(rename(getBundleName()))
     .pipe(gulp.dest(paths.output));
@@ -46,7 +48,7 @@ gulp.task('build', function() {
 
 gulp.task('build-tests', function() {
   
-  return gulp.src(paths.tests)
+  return gulp.src(paths.testEntry)
     .pipe(coffeeBrowserify())
     .pipe(rename('tests.js'))
     .pipe(gulp.dest(paths.output));
@@ -60,7 +62,7 @@ gulp.task('watch', function() {
   gulp.watch([paths.entry, paths.scripts], ['build'])
     .on('change', livereload.changed);
   
-  gulp.watch([paths.tests], ['build-tests'])
+  gulp.watch([paths.testEntry, paths.tests], ['build-tests'])
     .on('change', livereload.changed);
   
 });
