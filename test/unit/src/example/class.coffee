@@ -1,7 +1,4 @@
-{ActionSource, EntityOperation} = {}
-{InvalidArgumentError, ValidationError} = {}
 Class = FluxPlus.example
-Action = {}
 {assert} = chai
 
 describe "src/example/class", ->
