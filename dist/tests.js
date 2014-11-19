@@ -132,27 +132,9 @@ describe("src/dispatcher/Dispatcher", function() {
 
 
 },{}],3:[function(require,module,exports){
-var Class, assert;
-
-Class = FluxPlus.example;
-
-assert = chai.assert;
-
-describe("src/example/class", function() {
-  return describe("example", function() {
-    return it("should have an example property", function() {
-      return Class.prototype.example.should.equal('Test 1, 2, 3...');
-    });
-  });
-});
-
-
-},{}],4:[function(require,module,exports){
 require('./actions/action');
 
 require('./dispatcher/dispatcher');
 
-require('./example/class');
 
-
-},{"./actions/action":1,"./dispatcher/dispatcher":2,"./example/class":3}]},{},[4]);
+},{"./actions/action":1,"./dispatcher/dispatcher":2}]},{},[3]);
