@@ -2,7 +2,6 @@
   "author": "Robin <robin@tuxion.nl>",
   "license": "MIT",
   "name": "flux-plus",
-  "version": "0.0.1-alpha",
   "description": "An extention of the Flux classes to provide normalized actions and basic stores.",
   "repository": {
     "type": "git",

@@ -1,4 +1,4 @@
-# FluxPlus - pre-release version
+# FluxPlus - Alpha version
 
 Facebooks Flux principles have not been formalized into a full-stack framework yet.
 FluxPlus does not attempt to tackle this problem all at once but instead formalizes
@@ -9,12 +9,30 @@ Flux dispatcher. Using this you can quickly implement a skeleton framework of yo
 
 ## Installing
 
-...
+Add `flux-plus` to your bower dependencies and issue `bower update`.
 
 ## Developing
 
-...
+Requires node, npm and bower (globally).
+
+```sh
+npm install && bower install
+```
+
+Then to develop in real-time, use the default gulp action to do a build and watch.
+
+```sh
+./node_modules/.bin/gulp
+```
+
+In addition, open a second console with testem to see the unit testing results.
+
+```sh
+./node_modules/.bin/testem
+```
 
 ## Principles
 
-... > wiki?
+Documentation about why these classes are structured the way they are can be found here.
+
+* [Actions](docs/principles/Actions.md)
