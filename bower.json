@@ -1,5 +1,21 @@
 {
   "name": "flux-plus",
+  "description": "An extention of the Flux classes to provide normalized actions and basic stores.",
+  "license": "MIT",
+  "homepage": "https://github.com/tuxion/flux-plus/",
+  "authors": ["Tuxion"],
+  "keywords": [
+    "flux",
+    "dispatcher",
+    "react",
+    "facebook",
+    "stores",
+    "actions"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tuxion/flux-plus.git"
+  },
   "dependencies": {
     "flux": "*",
     "eventEmitter": "*"
@@ -11,18 +27,21 @@
     "chai-as-promised": "*",
     "sinon-chai": "*"
   },
-  "overrides": {
-    "mocha": {
-      "main": [
-        "mocha.js",
-        "mocha.css"
-      ]
-    },
-    "chai-as-promised": {
-      "main": "lib/chai-as-promised.js"
-    },
-    "sinon-chai": {
-      "main": "./lib/sinon-chai.js"
-    }
-  }
+  "main": [
+    "./dist/flux-plus.min.js"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "docs",
+    "examples",
+    "src",
+    "CONTRIBUTING.md",
+    "Gulpfile.js",
+    "index.mustache",
+    "testem.json",
+    "package.json"
+  ]
 }
