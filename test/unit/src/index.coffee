@@ -1,2 +1,3 @@
-require './actions/action'
-require './dispatcher/dispatcher'
+require './actions'
+require './dispatcher'
+require './stores'

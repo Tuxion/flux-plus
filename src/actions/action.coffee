@@ -5,10 +5,12 @@ module.exports = class Action
   
   name: null
   source: null
+  active: null
   entities: null
   payload: null
   
   constructor: ->
+    @active = {}
     @entities = {}
     @payload = {}
   

@@ -18,6 +18,12 @@ describe "src/actions/Action", ->
       action1.payload.should.be.an.instanceOf Object
       action2 = new Action
       action1.payload.should.not.equal action2.payload
+    
+    it "should create a new active object property", ->
+      action1 = new Action
+      action1.active.should.be.an.instanceOf Object
+      action2 = new Action
+      action1.active.should.not.equal action2.active
   
   describe "#validate", ->
     
