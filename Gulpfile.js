@@ -15,6 +15,8 @@ var paths = {
   output: './dist'
 };
 
+var reloader = null;
+
 var getBundleName = function () {
   var name = require('./package.json').name;
   return name + '.' + 'min.js';
@@ -38,32 +40,41 @@ gulp.task('clean', function(cb) {
 
 gulp.task('build', function() {
   
-  return gulp.src(paths.entry)
+  var stream = gulp.src(paths.entry)
     .pipe(coffeeBrowserify('FluxPlus'))
     .pipe(uglify())
     .pipe(rename(getBundleName()))
     .pipe(gulp.dest(paths.output));
   
+  if(reloader){
+    stream.on('end', livereload.changed);
+  }
+  
+  return stream;
+  
 });
 
 gulp.task('build-tests', function() {
   
-  return gulp.src(paths.testEntry)
+  var stream = gulp.src(paths.testEntry)
     .pipe(coffeeBrowserify())
     .pipe(rename('tests.js'))
     .pipe(gulp.dest(paths.output));
+  
+  if(reloader){
+    stream.on('end', livereload.changed);
+  }
+  
+  return stream;
   
 });
 
 gulp.task('watch', function() {
   
-  livereload.listen();
+  reloader = livereload.listen();
   
-  gulp.watch([paths.entry, paths.scripts], ['build'])
-    .on('change', livereload.changed);
-  
-  gulp.watch([paths.testEntry, paths.tests], ['build-tests'])
-    .on('change', livereload.changed);
+  gulp.watch([paths.entry, paths.scripts], ['build']);
+  gulp.watch([paths.testEntry, paths.tests], ['build-tests']);
   
 });
 
