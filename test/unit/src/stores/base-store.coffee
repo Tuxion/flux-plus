@@ -47,7 +47,17 @@ describe "src/stores/BaseStore", ->
       DummyBaseStore = require 'test/unit/src/mocks/dummy-base-store'
       registerSpy.should.have.been.calledOnce
       DummyBaseStore.dispatcherIndex.should.be.ok
-  
+    
+    it "should create it's own _ref and _elements objects", ->
+      TestBaseStore.prototype.elementName = "tests"
+      
+      store1 = new TestBaseStore Dispatcher
+      store1._refs.should.be.an.instanceOf Object
+      store1._elements.should.be.an.instanceOf Object
+      store2 = new TestBaseStore Dispatcher
+      store1._refs.should.not.equal store2._refs
+      store1._elements.should.not.equal store2._elements
+    
   describe "getOne", ->
     
     it "should return null if no element was found", ->
