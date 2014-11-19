@@ -33,4 +33,6 @@ In addition, open a second console with testem to see the unit testing results.
 
 ## Principles
 
-... > wiki?
+Documentation about why these classes are structured the way they are can be found here.
+
+* [Actions](docs/principles/Actions.md)
