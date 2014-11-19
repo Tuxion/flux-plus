@@ -9,7 +9,7 @@ Flux dispatcher. Using this you can quickly implement a skeleton framework of yo
 
 ## Installing
 
-Add `flux-plus` to your bower configuration file and issue install / update.
+Add `flux-plus` to your bower dependencies and issue `bower update`.
 
 ## Developing
 
