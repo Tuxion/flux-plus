@@ -63,7 +63,7 @@ module.exports = class BaseStore extends EventEmitter
       @_refs.active = active
       
       # In case it was a client action, emit change before we return.
-      if action.source = ActionSource.CLIENT
+      if action.source == ActionSource.CLIENT
         @emit 'change'
         return
     
