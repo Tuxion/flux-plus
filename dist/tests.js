@@ -222,12 +222,22 @@ describe("src/stores/BaseStore", function() {
         return new TestBaseStore(Dispatcher);
       }).should["throw"](Error, /^The property "elementName" must be set on implementations of the BaseStore/);
     });
-    return it("should define a callback on the dispatcher", function() {
+    it("should define a callback on the dispatcher", function() {
       var registerSpy;
       registerSpy = sinon.spy(Dispatcher.__proto__, 'register');
       DummyBaseStore = require('test/unit/src/mocks/dummy-base-store');
       registerSpy.should.have.been.calledOnce;
       return DummyBaseStore.dispatcherIndex.should.be.ok;
+    });
+    return it("should create it's own _ref and _elements objects", function() {
+      var store1, store2;
+      TestBaseStore.prototype.elementName = "tests";
+      store1 = new TestBaseStore(Dispatcher);
+      store1._refs.should.be.an.instanceOf(Object);
+      store1._elements.should.be.an.instanceOf(Object);
+      store2 = new TestBaseStore(Dispatcher);
+      store1._refs.should.not.equal(store2._refs);
+      return store1._elements.should.not.equal(store2._elements);
     });
   });
   describe("getOne", function() {
