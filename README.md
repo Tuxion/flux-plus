@@ -7,6 +7,15 @@ some additional principles and ideas to take you one step closer to a framework.
 FluxPlus provides several base classes to work with in addition to the existing
 Flux dispatcher. Using this you can quickly implement a skeleton framework of your own.
 
+<!-- MarkdownTOC -->
+
+- [Installing](#installing)
+- [Developing](#developing)
+- [API documentation](#api-documentation)
+- [Principles](#principles)
+
+<!-- /MarkdownTOC -->
+
 ## Installing
 
 Add `flux-plus` to your bower dependencies and issue `bower update`.
@@ -30,6 +39,10 @@ In addition, open a second console with testem to see the unit testing results.
 ```sh
 ./node_modules/.bin/testem
 ```
+
+## API documentation
+
+See [/docs/api](docs/api/README.md)
 
 ## Principles
 
