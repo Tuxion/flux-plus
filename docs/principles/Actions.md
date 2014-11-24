@@ -16,19 +16,19 @@ Suppose you make your 100th post now.
 
 `POST /api/posts`
 ```json
-{message: "Hello world!"}
+{"message": "Hello world!"}
 ```
 
 This could result in a response like this:
 
 ```json
 {
-  id:100,
-  message:"Hello world!",
-  awardedMedals:[
+  "id":100,
+  "message":"Hello world!",
+  "awardedMedals":[
     {
-      id:4,
-      title:"Created 100 posts!"
+      "id":4,
+      "title":"Created 100 posts!"
     }
   ]
 }
