@@ -1,6 +1,8 @@
 var gulp = require('gulp');
+var notify = require('gulp-notify');
 var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
+var plumber = require('gulp-plumber');
 var livereload = require('gulp-livereload');
 var browserify = require('browserify');
 var cachingCoffeeify = require('caching-coffeeify');
@@ -30,9 +32,18 @@ var coffeeBrowserify = function(standalone){
       standalone: standalone || null
     });
     b.transform(cachingCoffeeify)
-    return b.bundle();
+    return b.bundle()
+      .on('error', coffeeError);
   });
 };
+
+var coffeeError = function(error){
+  notify.onError({
+    title: "Build error",
+    message: error.toString()
+  })(error);
+  this.emit('end');
+}
 
 gulp.task('clean', function(cb) {
   del([paths.output], cb);
@@ -41,6 +52,7 @@ gulp.task('clean', function(cb) {
 gulp.task('build', function() {
   
   var stream = gulp.src(paths.entry)
+    .pipe(plumber())
     .pipe(coffeeBrowserify('FluxPlus'))
     .pipe(uglify())
     .pipe(rename(getBundleName()))
@@ -57,6 +69,7 @@ gulp.task('build', function() {
 gulp.task('build-tests', function() {
   
   var stream = gulp.src(paths.testEntry)
+    .pipe(plumber())
     .pipe(coffeeBrowserify())
     .pipe(rename('tests.js'))
     .pipe(gulp.dest(paths.output));
