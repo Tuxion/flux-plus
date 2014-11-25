@@ -217,10 +217,10 @@ describe("src/stores/BaseStore", function() {
         return new TestBaseStore();
       }).should["throw"](Error, /^An instance of FluxPlus.Dispatcher should be provided/);
     });
-    it("should require the elementName property to be overridden", function() {
+    it("should require the entityName property to be overridden", function() {
       return (function() {
         return new TestBaseStore(Dispatcher);
-      }).should["throw"](Error, /^The property "elementName" must be set on implementations of the BaseStore/);
+      }).should["throw"](Error, /^The property "entityName" must be set on implementations of the BaseStore/);
     });
     it("should define a callback on the dispatcher", function() {
       var registerSpy;
@@ -231,13 +231,13 @@ describe("src/stores/BaseStore", function() {
     });
     return it("should create it's own _ref and _elements objects", function() {
       var store1, store2;
-      TestBaseStore.prototype.elementName = "tests";
+      TestBaseStore.prototype.entityName = "tests";
       store1 = new TestBaseStore(Dispatcher);
       store1._refs.should.be.an.instanceOf(Object);
-      store1._elements.should.be.an.instanceOf(Object);
+      store1._entities.should.be.an.instanceOf(Object);
       store2 = new TestBaseStore(Dispatcher);
       store1._refs.should.not.equal(store2._refs);
-      return store1._elements.should.not.equal(store2._elements);
+      return store1._entities.should.not.equal(store2._entities);
     });
   });
   describe("getOne", function() {
@@ -379,7 +379,7 @@ DummyBaseStore = (function(_super) {
     return DummyBaseStore.__super__.constructor.apply(this, arguments);
   }
 
-  DummyBaseStore.prototype.elementName = 'dummies';
+  DummyBaseStore.prototype.entityName = 'dummies';
 
   return DummyBaseStore;
 
