@@ -1,4 +1,4 @@
 class DummyBaseStore extends FluxPlus.BaseStore
-  elementName: 'dummies'
+  entityName: 'dummies'
 
 module.exports = new DummyBaseStore require './dispatcher'

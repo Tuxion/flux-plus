@@ -37,9 +37,9 @@ describe "src/stores/BaseStore", ->
       (-> new TestBaseStore()).should.throw Error,
         /^An instance of FluxPlus.Dispatcher should be provided/
     
-    it "should require the elementName property to be overridden", ->
+    it "should require the entityName property to be overridden", ->
       (-> new TestBaseStore(Dispatcher)).should.throw Error,
-        /^The property "elementName" must be set on implementations of the BaseStore/
+        /^The property "entityName" must be set on implementations of the BaseStore/
     
     it "should define a callback on the dispatcher", ->
       
@@ -49,14 +49,14 @@ describe "src/stores/BaseStore", ->
       DummyBaseStore.dispatcherIndex.should.be.ok
     
     it "should create it's own _ref and _elements objects", ->
-      TestBaseStore.prototype.elementName = "tests"
+      TestBaseStore.prototype.entityName = "tests"
       
       store1 = new TestBaseStore Dispatcher
       store1._refs.should.be.an.instanceOf Object
-      store1._elements.should.be.an.instanceOf Object
+      store1._entities.should.be.an.instanceOf Object
       store2 = new TestBaseStore Dispatcher
       store1._refs.should.not.equal store2._refs
-      store1._elements.should.not.equal store2._elements
+      store1._entities.should.not.equal store2._entities
     
   describe "getOne", ->
     

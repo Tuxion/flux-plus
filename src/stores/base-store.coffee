@@ -4,18 +4,18 @@ Dispatcher = require 'src/dispatcher/dispatcher'
 
 module.exports = class BaseStore extends EventEmitter
   
-  # The element name should be provided in your implementation of the store.
-  elementName: null
-  _elements: null
+  # The entity name should be provided in your implementation of the store.
+  entityName: null
+  _entities: null
   _refs: null
   
   # Default way of fetching the ID.
-  extractId: (element) ->
-    return element.id
+  extractId: (entity) ->
+    return entity.id
   
-  # Default way of finding the active element.
+  # Default way of finding the active entity.
   extractActive: (action) ->
-    active = action.active?[@elementName]
+    active = action.active?[@entityName]
     return if active == undefined then false else active
   
   # Creates a new store.
@@ -25,12 +25,12 @@ module.exports = class BaseStore extends EventEmitter
     unless dispatcher instanceof Dispatcher
       throw new InvalidArgumentError 'An instance of FluxPlus.Dispatcher should be provided.'
     
-    # We need the elementName property for the basic store operations.
-    unless @elementName?
-      throw new Error 'The property "elementName" must be set on implementations of the BaseStore.'
+    # We need the entityName property for the basic store operations.
+    unless @entityName?
+      throw new Error 'The property "entityName" must be set on implementations of the BaseStore.'
     
     # Create local collections.
-    @_elements = {}
+    @_entities = {}
     @_refs =
       active: null
     
@@ -46,18 +46,18 @@ module.exports = class BaseStore extends EventEmitter
   getOne: (id) ->
     if id instanceof Object
       id = @extractId id
-    return @_elements[id] || null
+    return @_entities[id] || null
   
-  # Provides a clone of the internal elements object.
+  # Provides a clone of the internal entities object.
   getAll: ->
     clone = {}
-    clone[k]=v for k, v of @_elements
+    clone[k]=v for k, v of @_entities
     return clone
   
   # Handles our basic EntityOperations.
   handleAction: (action) ->
     
-    # Attempt to update the active 
+    # Attempt to update the active entity
     active = @extractActive action
     if active != false
       @_refs.active = active
@@ -67,21 +67,21 @@ module.exports = class BaseStore extends EventEmitter
         @emit 'change'
         return
     
-    # Only elements from the server are interesting to us.
+    # Only entities from the server are interesting to us.
     # This is not an optimistic implementation.
     return unless action.source is ActionSource.SERVER
-    return unless action.entities[@elementName]
+    return unless action.entities[@entityName]
     
     # Implement our usual operations.
-    switch action.entities[@elementName]
+    switch action.entities[@entityName]
       when EntityOperation.REPLACE
-        @_elements = {}
-        @_elements[@extractId(item)] = item for item in action.payload[@elementName]
+        @_entities = {}
+        @_entities[@extractId(item)] = item for item in action.payload[@entityName]
       when EntityOperation.MERGE
-        @_elements[@extractId(item)] = item for item in action.payload[@elementName]
+        @_entities[@extractId(item)] = item for item in action.payload[@entityName]
       when EntityOperation.DELETE
-        for item in action.payload[@elementName]
-          delete @_elements[@extractId(item)]
+        for item in action.payload[@entityName]
+          delete @_entities[@extractId(item)]
     
     # Fire our change event.
     @emit 'change'
