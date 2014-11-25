@@ -11,6 +11,7 @@ Flux dispatcher. Using this you can quickly implement a skeleton framework of yo
 
 - [Installing](#installing)
 - [Developing](#developing)
+- [Contributing](#contributing)
 - [API documentation](#api-documentation)
 - [Principles](#principles)
 
@@ -39,6 +40,18 @@ In addition, open a second console with testem to see the unit testing results.
 ```sh
 ./node_modules/.bin/testem
 ```
+
+## Contributing
+
+If you found a bug, please submit an issue.
+If you can, please tell us:
+
+* Which browser this happens with
+* How we can reproduce the error
+
+If you want to submit code, create a pull request.
+For bug-fixes use the master branch as your target.
+For new features use the develop branch as your target.
 
 ## API documentation
 
